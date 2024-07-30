@@ -14,7 +14,10 @@ namespace Models
 
         public Book(string title)
         {
-            Id = Guid.NewGuid();
+            Title = title;
+        }
+        public void SetTitle(string title)
+        {
             Title = title;
         }
     }
