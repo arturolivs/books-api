@@ -2,7 +2,7 @@
 
 namespace books_api.Data.Repositories
 {
-    public interface IBookRepository : ICrudRepository<Book>
+    public interface IAuthorRepository : ICrudRepository<Author>
     {
     }
 }

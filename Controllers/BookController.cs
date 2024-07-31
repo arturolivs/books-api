@@ -13,7 +13,6 @@ public class BookController : ControllerBase
     public BookController(IBookService bookService)
     {
         _bookService = bookService;
-
     }
 
     [HttpGet]

@@ -1,13 +1,9 @@
-﻿using Models;
+﻿using books_api.Services;
+using Models;
 
 namespace Services
 {
-    public interface IBookService
+    public interface IBookService: IBaseService<Book>
     {
-    Task<IEnumerable<Book>> GetAllAsync();
-    Task<Book> FindAsync(Guid id);
-    Task<Book> CreateAsync(Book book);
-    Task<Book> UpdateAsync(Guid id, Book book);
-    Task DeleteAsync(Guid id);
     }
 }
