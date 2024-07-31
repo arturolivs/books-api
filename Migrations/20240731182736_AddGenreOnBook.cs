@@ -13,7 +13,8 @@ namespace books_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"
-            ALTER TABLE books ADD COLUMN genre_id uuid REFERENCES genres(id);");
+            ALTER TABLE books ADD COLUMN genre_id uuid,
+            ADD CONSTRAINT fk_books_genres FOREIGN KEY (genre_id) REFERENCES genres (id);");
         }
 
         /// <inheritdoc />

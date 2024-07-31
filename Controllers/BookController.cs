@@ -39,7 +39,7 @@ public class BookController : ControllerBase
     {
         var createdBook = await _bookService.CreateAsync(book);
 
-        return CreatedAtAction(nameof(FindBook), new { id = book.Id }, book);
+        return CreatedAtAction(nameof(FindBook), new { id = book.Id }, createdBook);
     }
 
     [HttpPut("{id}")]
@@ -47,7 +47,7 @@ public class BookController : ControllerBase
     {
         var bookSaved = await _bookService.UpdateAsync(id, book);
 
-        return Ok(book);
+        return Ok(bookSaved);
     }
 
     [HttpDelete("{id}")]
