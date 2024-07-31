@@ -34,6 +34,9 @@ namespace books_api.Services.Impl
         {
             Book existentBook = await FindAsync(id);
             existentBook.SetTitle(book.Title);
+            existentBook.SetPublicationYear(book.PublicationYear);
+            existentBook.SetDescription(book.Description);
+
             return await _bookRepository.UpdateAsync(existentBook);
         }
 
