@@ -12,8 +12,8 @@ using books_api.Data;
 namespace books_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240731175411_CreateGenresTable")]
-    partial class CreateGenresTable
+    [Migration("20240731182736_AddGenreOnBook")]
+    partial class AddGenreOnBook
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,23 @@ namespace books_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("books");
+                });
+
+            modelBuilder.Entity("Models.Genre", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("genres");
                 });
 #pragma warning restore 612, 618
         }

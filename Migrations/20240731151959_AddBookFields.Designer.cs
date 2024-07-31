@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using books_api.Data.Contexts;
+using books_api.Data;
 
 #nullable disable
 
 namespace books_api.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20240731151959_AddBookFields")]
     partial class AddBookFields
     {
