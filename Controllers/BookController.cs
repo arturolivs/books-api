@@ -17,13 +17,13 @@ public class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetBooks()
+    public async Task<IActionResult> GetAll()
     {
         return Ok(await _bookService.GetAllAsync());
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetBook(Guid id)
+    public async Task<IActionResult> FindBook(Guid id)
     {
         var book = await _bookService.FindAsync(id);
         if (book == null)
@@ -35,15 +35,15 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBook(Book book)
+    public async Task<IActionResult> Create(Book book)
     {
         var createdBook = await _bookService.CreateAsync(book);
 
-        return CreatedAtAction(nameof(GetBooks), new { id = book.Id }, book);
+        return CreatedAtAction(nameof(FindBook), new { id = book.Id }, book);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateBook(Guid id, Book book)
+    public async Task<IActionResult> Update(Guid id, Book book)
     {
         var bookSaved = await _bookService.UpdateAsync(id, book);
 
@@ -51,7 +51,7 @@ public class BookController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> UpdateBook(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         await _bookService.DeleteAsync(id);
 

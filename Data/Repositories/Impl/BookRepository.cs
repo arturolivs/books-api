@@ -1,15 +1,15 @@
-﻿using Data;
-using Models;
+﻿using Models;
 
 using Microsoft.EntityFrameworkCore;
+using books_api.Data.Contexts;
 
-namespace Services
+namespace books_api.Data.Repositories.Impl
 {
-    public class BookService : IBookService
+    public class BookRepository : IBookRepository
     {
         private readonly BookContext _context;
 
-        public BookService(BookContext context)
+        public BookRepository(BookContext context)
         {
             _context = context;
 
@@ -22,30 +22,28 @@ namespace Services
 
         public async Task<Book> FindAsync(Guid id)
         {
-            var book = await _context.Books.FindAsync(id) ?? throw new Exception();
-            return book;
+            return await _context.Books.FindAsync(id) ?? throw new Exception();
         }
 
         public async Task<Book> CreateAsync(Book book)
         {
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
+
             return book;
         }
 
-        public async Task<Book> UpdateAsync(Guid id,Book book)
+        public async Task<Book> UpdateAsync(Book book)
         {
-            Book existentBook = await FindAsync(id);
-            existentBook.SetTitle(book.Title);
+            _context.Entry(book).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            
+
             return book;
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Book book)
         {
-            Book existentBook = await FindAsync(id);
-            _context.Books.Remove(existentBook);
+            _context.Books.Remove(book);
             await _context.SaveChangesAsync();
         }
     }
