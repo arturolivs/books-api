@@ -1,9 +1,9 @@
 using Services;
 using Microsoft.EntityFrameworkCore;
-using books_api.Data.Contexts;
 using books_api.Data.Repositories;
 using books_api.Services.Impl;
 using books_api.Data.Repositories.Impl;
+using books_api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +22,14 @@ builder.Services.AddCors(options =>
 });
 
 
-builder.Services.AddDbContext<BookContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 
 var app = builder.Build();
 

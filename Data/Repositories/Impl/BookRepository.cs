@@ -1,15 +1,14 @@
 ﻿using Models;
 
 using Microsoft.EntityFrameworkCore;
-using books_api.Data.Contexts;
 
 namespace books_api.Data.Repositories.Impl
 {
     public class BookRepository : IBookRepository
     {
-        private readonly BookContext _context;
+        private readonly AppDbContext _context;
 
-        public BookRepository(BookContext context)
+        public BookRepository(AppDbContext context)
         {
             _context = context;
 
