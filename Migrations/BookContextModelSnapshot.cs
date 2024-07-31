@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using books_api.Data.Contexts;
+using books_api.Data;
 
 #nullable disable
 
 namespace books_api.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class BookContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -46,6 +46,23 @@ namespace books_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("books");
+                });
+
+            modelBuilder.Entity("Models.Genre", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("genres");
                 });
 #pragma warning restore 612, 618
         }
