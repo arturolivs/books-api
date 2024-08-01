@@ -21,12 +21,16 @@ namespace Models
         [Column("genre_id")]
         public Guid GenreId { get; private set; }
 
-        public Book(string title, string description, int publicationYear, Guid genreId)
+        [Column("author_id")]
+        public Guid AuthorId { get; private set; }
+
+        public Book(string title, string description, int publicationYear, Guid genreId, Guid authorId)
         {
             Title = title;
             Description = description;
             PublicationYear = publicationYear;
             GenreId = genreId;
+            AuthorId = authorId;
         }
 
         public void SetTitle(string title)
