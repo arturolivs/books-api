@@ -3,7 +3,7 @@ using Models;
 
 namespace Services
 {
-    public interface IGenreService: IBaseService<Genre>
+    public interface IAuthorService: IBaseService<Author>
     {
     }
 }

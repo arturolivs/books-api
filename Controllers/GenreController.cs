@@ -11,7 +11,6 @@ public class GenreController : ControllerBase
     public GenreController(IGenreService genreService)
     {
         _genreService = genreService;
-
     }
 
     [HttpGet]

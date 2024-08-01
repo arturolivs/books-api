@@ -2,12 +2,7 @@
 
 namespace books_api.Data.Repositories
 {
-    public interface IGenreRepository
+    public interface IGenreRepository: ICrudRepository<Genre>
     {
-        Task<IEnumerable<Genre>> GetAllAsync();
-        Task<Genre> FindAsync(Guid id);
-        Task<Genre> CreateAsync(Genre genre);
-        Task<Genre> UpdateAsync(Genre genre);
-        Task DeleteAsync(Genre genre);
     }
 }
