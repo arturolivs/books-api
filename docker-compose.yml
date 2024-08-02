@@ -9,6 +9,7 @@ services:
       POSTGRES_DB: books
     volumes:
       - postgres:/data/postgres
+      - ./create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
     ports:
       - "5432:5432"
     restart: unless-stopped
