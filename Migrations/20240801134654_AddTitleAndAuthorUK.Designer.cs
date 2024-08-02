@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using books_api.Data;
@@ -11,9 +12,11 @@ using books_api.Data;
 namespace books_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20240801134654_AddTitleAndAuthorUK")]
+    partial class AddTitleAndAuthorUK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

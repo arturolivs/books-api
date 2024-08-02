@@ -20,9 +20,11 @@ namespace Models
 
         [Column("genre_id")]
         public Guid GenreId { get; private set; }
+        public Genre Genre { get; private set; }
 
         [Column("author_id")]
         public Guid AuthorId { get; private set; }
+        public Author Author { get; private set; }
 
         public Book(string title, string description, int publicationYear, Guid genreId, Guid authorId)
         {
@@ -47,5 +49,25 @@ namespace Models
         {
             Description = description;
         }
+        public void SetGenre(Genre genre)
+        {
+            Genre = genre;
+        }
+
+        public void SetAuthor(Author author)
+        {
+            Author = author;
+        }
+
+        public void SetGenreId(Guid genreId)
+        {
+            GenreId = genreId;
+        }
+
+        public void SetAuthorId(Guid authorId)
+        {
+            AuthorId = authorId;
+        }
+
     }
 }

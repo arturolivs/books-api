@@ -2,17 +2,20 @@
 
 using books_api.Data.Repositories;
 using Services;
+using books_api.Data.Repositories.Impl;
+using books_api.Exceptions;
 
 namespace books_api.Services.Impl
 {
     public class GenreService : IGenreService
     {
         private readonly IGenreRepository _genreRepository;
+        private readonly IBookRepository _bookRepository;
 
-        public GenreService(IGenreRepository genreRepository)
+        public GenreService(IGenreRepository genreRepository, IBookRepository bookRepository)
         {
             _genreRepository = genreRepository;
-
+            _bookRepository = bookRepository;
         }
 
         public async Task<IEnumerable<Genre>> GetAllAsync()
@@ -40,6 +43,9 @@ namespace books_api.Services.Impl
 
         public async Task DeleteAsync(Guid id)
         {
+            if (await _genreRepository.GenreInUseAsync(id))
+                throw new EntityInUseException($"Genre with id: '{id}' is used in some book.");
+
             Genre existentGenre = await FindAsync(id);
             await _genreRepository.DeleteAsync(existentGenre);
         }

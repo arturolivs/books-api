@@ -1,6 +1,7 @@
 ﻿using Models;
 
 using Microsoft.EntityFrameworkCore;
+using books_api.Exceptions;
 
 namespace books_api.Data.Repositories.Impl
 {
@@ -11,7 +12,6 @@ namespace books_api.Data.Repositories.Impl
         public GenreRepository(AppDbContext context)
         {
             _context = context;
-
         }
 
         public async Task<IEnumerable<Genre>> GetAllAsync()
@@ -21,7 +21,7 @@ namespace books_api.Data.Repositories.Impl
 
         public async Task<Genre> FindAsync(Guid id)
         {
-            return await _context.Genres.FindAsync(id) ?? throw new Exception();
+            return await _context.Genres.FindAsync(id) ?? throw new EntityNotFoundException($"Genre with id: '{id}' not found.");
         }
 
         public async Task<Genre> CreateAsync(Genre genre)
@@ -44,6 +44,11 @@ namespace books_api.Data.Repositories.Impl
         {
             _context.Genres.Remove(genre);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> GenreInUseAsync(Guid id)
+        {
+            return await _context.Books.AnyAsync(b => b.GenreId == id);
         }
     }
 }
