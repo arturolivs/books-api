@@ -5,7 +5,7 @@ using books_api.View.ViewModels;
 using books_api.Dto;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/books")]
 public class BookController : ControllerBase
 {
     private readonly IBookService _bookService;
