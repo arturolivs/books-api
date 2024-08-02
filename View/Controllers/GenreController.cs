@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/genres")]
 public class GenreController : ControllerBase
 {
     private readonly IGenreService _genreService;

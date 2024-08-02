@@ -5,7 +5,7 @@ using books_api.View.ViewModels;
 using static System.Reflection.Metadata.BlobBuilder;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/authors")]
 public class AuthorController : ControllerBase
 {
     private readonly IAuthorService _authorService;
