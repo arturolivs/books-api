@@ -18,7 +18,6 @@ namespace Models
         [Column("birth_date")]
         public DateTime BirthDate { get; private set; }
 
-        public ICollection<Book> Books { get; private set; } = new HashSet<Book>();
 
         public Author(string firstName, string lastName, DateTime birthDate)
         {
@@ -42,9 +41,6 @@ namespace Models
             BirthDate = birthDate;
         }
 
-        public void SetBooks(ICollection<Book> books)
-        {
-            Books = books;
-        }
+  
     }
 }

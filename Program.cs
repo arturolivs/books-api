@@ -4,6 +4,7 @@ using books_api.Data.Repositories;
 using books_api.Services.Impl;
 using books_api.Data.Repositories.Impl;
 using books_api.Data;
+using books_api.View;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,12 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod()
                .AllowAnyHeader();
     });
+});
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiExceptionHandler>();
+
 });
 
 

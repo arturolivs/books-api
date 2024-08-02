@@ -1,6 +1,7 @@
 ﻿using Models;
 
 using Microsoft.EntityFrameworkCore;
+using books_api.Exceptions;
 
 namespace books_api.Data.Repositories.Impl
 {
@@ -20,7 +21,8 @@ namespace books_api.Data.Repositories.Impl
 
         public async Task<Author> FindAsync(Guid id)
         {
-            return await _context.Authors.FindAsync(id) ?? throw new Exception();
+            return await _context.Authors.FindAsync(id)
+                 ?? throw new EntityNotFoundException($"Author with id: '{id}' not found.");
         }
 
         public async Task<Author> CreateAsync(Author author)
@@ -43,6 +45,10 @@ namespace books_api.Data.Repositories.Impl
         {
             _context.Authors.Remove(Author);
             await _context.SaveChangesAsync();
+        }
+        public async Task<bool> AuthorInUseAsync(Guid id)
+        {
+            return await _context.Books.AnyAsync(b => b.AuthorId == id);
         }
     }
 }
